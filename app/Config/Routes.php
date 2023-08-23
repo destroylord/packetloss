@@ -10,6 +10,7 @@ $routes = Services::routes();
  * Router Setup
  * --------------------------------------------------------------------
  */
+$routes->setAutoRoute(true);
 $routes->setDefaultNamespace('App\Controllers');
 $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
@@ -29,7 +30,7 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::dashboard');
+$routes->get('/', 'Home::index');
 
 /*
  * --------------------------------------------------------------------
