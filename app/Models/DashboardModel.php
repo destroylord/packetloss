@@ -8,15 +8,26 @@ class DashboardModel extends Model
 {
     protected $table = 'packetlos';
     protected $primaryKey = 'site_id';
-    // protected $useTimestamps = true;
-    // protected $dateFormat    = 'datetime';
 
+    public function getUniqueRegencies()
+    {
+        $query = $this->distinct()->select('kabupaten')->findAll();
+        $regencies = array_column($query, 'kabupaten');
 
-    // public function getKomik($slug = false)
-    // {
-    //     if ($slug == false) {
-    //         return $this->findAll();
-    //     }
-    //     return $this->where(['slug' => $slug])->first();
-    // }
+        return $regencies;
+    }
+
+    public function getRegency()
+    {
+        $query = $this->select('kabupaten, COUNT(*) as count')
+                    ->groupBy('kabupaten')
+                    ->findAll();
+
+        $regencyCounts = [];
+        foreach ($query as $row) {
+            $regencyCounts[$row['kabupaten']] = $row['count'];
+        }
+
+        return $regencyCounts;
+    }
 }

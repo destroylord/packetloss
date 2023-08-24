@@ -52,25 +52,42 @@
                             <canvas id="lineChart" width="auto" height="auto"></canvas>
                         </div>
                         <script>
+
+                        function generateRandomColor() {
+                                var letters = '0123456789ABCDEF';
+                                var color = '#';
+                                for (var i = 0; i < 6; i++) {
+                                    color += letters[Math.floor(Math.random() * 16)];
+                                }
+                                return color;
+                            }
+
+                            var uniqueRegencies = <?php echo json_encode($uniqueRegencies); ?>;
+                            var regencyCounts = <?php echo json_encode($regencyCounts); ?>;
+
+                            var labels = [];
+                            var data = [];
+                            
+
+
+                            for (const label in regencyCounts) {
+                                labels.push(label)
+                                data.push(regencyCounts[label])
+                            }
+                           
                             // Data untuk Line Chart yang bertumpuk
                             var lineData = {
-                                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                                labels: labels, // Gunakan label dari data Anda
+
                                 datasets: [{
-                                        label: 'Line 1',
-                                        data: [10, 15, 20, 25, 30],
-                                        borderColor: 'rgba(75, 192, 192, 1)',
-                                        borderWidth: 2,
-                                        fill: true
-                                    },
-                                    {
-                                        label: 'Line 2',
-                                        data: [5, 10, 15, 20, 25],
-                                        borderColor: 'rgba(255, 99, 132, 1)',
-                                        borderWidth: 2,
-                                        fill: true
-                                    }
-                                ]
+                                    label: 'Data',
+                                    data: data,
+                                    borderColor: generateRandomColor(),
+                                    borderWidth: 2,
+                                    fill: true
+                                }]
                             };
+
                             // Konfigurasi untuk Line Chart
                             var lineOptions = {
                                 scales: {
