@@ -51,8 +51,6 @@
                         <div style="display: inline-block; width: auto;">
                             <canvas id="lineChart" width="auto" height="auto"></canvas>
                         </div>
-
-                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                         <script>
                             // Data untuk Line Chart yang bertumpuk
                             var lineData = {
