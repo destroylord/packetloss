@@ -6,18 +6,15 @@ use App\Models\DashboardModel;
 
 class Home extends BaseController
 {
-    protected $dashboardModel;
-    public function __construct()
-    {
-        $this->dashboardModel = new DashboardModel();
-    }
+  
     public function index(): string
     {
-        $dashboard = $this->dashboardModel->findAll();
-        $data = [
-            'dashboard' => $dashboard
-        ];
-        // dd($dashboard);
+        $model = new DashboardModel();
+
+        $data['uniqueRegencies'] = $model->getUniqueRegencies();
+        $data['regencyCounts'] = $model->getRegency();
+
+        // dd($data['regencyCounts']);
         return view('index', $data);
     }
 }
