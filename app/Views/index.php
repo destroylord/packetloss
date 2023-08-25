@@ -51,60 +51,6 @@
                         <div style="display: inline-block; width: auto;">
                             <canvas id="lineChart" width="auto" height="auto"></canvas>
                         </div>
-                        <script>
-
-                        function generateRandomColor() {
-                                var letters = '0123456789ABCDEF';
-                                var color = '#';
-                                for (var i = 0; i < 6; i++) {
-                                    color += letters[Math.floor(Math.random() * 16)];
-                                }
-                                return color;
-                            }
-
-                            var uniqueRegencies = <?php echo json_encode($uniqueRegencies); ?>;
-                            var regencyCounts = <?php echo json_encode($regencyCounts); ?>;
-
-                            var labels = [];
-                            var data = [];
-                            
-
-
-                            for (const label in regencyCounts) {
-                                labels.push(label)
-                                data.push(regencyCounts[label])
-                            }
-                           
-                            // Data untuk Line Chart yang bertumpuk
-                            var lineData = {
-                                labels: labels, // Gunakan label dari data Anda
-
-                                datasets: [{
-                                    label: 'Data',
-                                    data: data,
-                                    borderColor: generateRandomColor(),
-                                    borderWidth: 2,
-                                    fill: true
-                                }]
-                            };
-
-                            // Konfigurasi untuk Line Chart
-                            var lineOptions = {
-                                scales: {
-                                    y: {
-                                        beginAtZero: true
-                                    }
-                                },
-                                responsive: true
-                            };
-                            // Inisialisasi Line Chart
-                            var lineCtx = document.getElementById('lineChart').getContext('2d');
-                            var lineChart = new Chart(lineCtx, {
-                                type: 'line',
-                                data: lineData,
-                                options: lineOptions
-                            });
-                        </script>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -136,4 +82,6 @@
     </footer>
 </div>
 </div>
+
+<?= $this->include('scripts/chart') ?>
 <?= $this->endSection(); ?>
