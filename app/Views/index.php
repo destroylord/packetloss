@@ -9,34 +9,23 @@
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
+                            <h5 class="card-title">UNTUK MAP</h5>
                         </div>
-                        <div style="width: auto; margin: auto;">
-                            <canvas id="donutChart"></canvas>
-                        </div>
-                        <script>
-                            var ctx = document.getElementById('donutChart').getContext('2d');
-                            var donutChart = new Chart(ctx, {
-                                type: 'doughnut',
-                                data: {
-                                    labels: ['Label 1', 'Label 2', 'Label 3'],
-                                    datasets: [{
-                                        data: [30, 40, 20],
-                                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
-                                    }]
-                                },
-                                options: {
-                                    cutoutPercentage: 70, // Nilai ini mengontrol ukuran lubang di tengah donut chart
-                                    responsive: true
-                                }
-                            });
-                        </script>
+
+
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="card">
                         <div class="card-body">
-
+                            <form method="post" accept-charset="utf-8" action="<?php echo base_url("Home/index"); ?>">
+                                <select name="week" onchange="this.form.submit()" class="form-select form-select-sm" aria-label="Small select example">
+                                    <option>-- Pilih Minggu --</option>
+                                    <?php foreach ($week as $w) : ?>
+                                        <option value="<?= $w['week']; ?>"><?= $w['week']; ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -45,15 +34,14 @@
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
+                            <!-- <h5 class="card-title">Special title treatment</h5> -->
                         </div>
                         <!-- Elemen Canvas untuk Line Chart (sebelah kanan) -->
                         <div style="display: inline-block; width: auto;">
                             <canvas id="lineChart" width="auto" height="auto"></canvas>
                         </div>
                         <script>
-
-                        function generateRandomColor() {
+                            function generateRandomColor() {
                                 var letters = '0123456789ABCDEF';
                                 var color = '#';
                                 for (var i = 0; i < 6; i++) {
@@ -67,14 +55,14 @@
 
                             var labels = [];
                             var data = [];
-                            
+
 
 
                             for (const label in regencyCounts) {
                                 labels.push(label)
                                 data.push(regencyCounts[label])
                             }
-                           
+
                             // Data untuk Line Chart yang bertumpuk
                             var lineData = {
                                 labels: labels, // Gunakan label dari data Anda
@@ -109,10 +97,32 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="card">
-
                         <div class="card">
                             <div class="card-body">
+                                <div>
+                                    <canvas id="myChart"></canvas>
+                                    <script>
+                                        const ctx = document.getElementById('myChart');
+                                        new Chart(ctx, {
+                                            type: 'doughnut',
+                                            data: {
+                                                labels: ['CLEAR', 'SPIKE', 'CONSECUTIVE'],
+                                                datasets: [{
+                                                    data: [
+                                                        <?= $pl_clear; ?>, <?= $pl_spike; ?>, <?= $pl_consecutive; ?>
+                                                    ],
+                                                    borderWidth: 2
+                                                }]
+                                            },
+                                            options: {
+                                                cutoutPercentage: 50,
+                                                responsize: true,
+                                                maintainAspectRatio: false
+                                            }
 
+                                        });
+                                    </script>
+                                </div>
                             </div>
                         </div>
                     </div>
