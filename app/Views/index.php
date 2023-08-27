@@ -4,13 +4,13 @@
     <main>
         <div class="container-fluid px-4 ">
             <h1 class="mt-4 mb-4">Dashboard</h1>
-            </di>
-            <div class="row">
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">UNTUK MAP</h5>
-                            <div id="map" style="width: 170%; height: 450px;"></div>
+
+
+            <div class="card">
+                <div class="card-body">
+
+                    <div id="map" style="width: 100%; height: 450px;">
+                        <canvas id="maps">
                             <script>
                                 var map = L.map('map').setView([-7.485091503187003, 112.46627356942513], 10);
 
@@ -27,29 +27,25 @@
                                     L.marker([latitude, longitude]).bindPopup("<b>Ini Lokasi 3</b>").addTo(map);
                                 }
                             </script>
-                        </div>
-                        <div class="card-body"><canvas id="maps" width="100%" height="50"></canvas></div>
-                    </div>
-                        </div>
-
-
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <form method="post" accept-charset="utf-8" action="<?php echo base_url("Home/index"); ?>">
-                                <select name="week" onchange="this.form.submit()" class="form-select form-select-sm" aria-label="Small select example">
-                                    <option>-- Pilih Minggu --</option>
-                                    <?php foreach ($week as $w) : ?>
-                                        <option value="<?= $w['week']; ?>"><?= $w['week']; ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                            </form>
-                        </div>
+                        </canvas>
                     </div>
                 </div>
             </div>
+
+            <div class="card mt-3" style=" border: none;">
+                <div class="card-body">
+                    <form method="post" accept-charset="utf-8" action="<?php echo base_url("Home/index"); ?>">
+                        <select name="week" onchange="this.form.submit()" aria-label="Small select example">
+                            <option>-- Pilih Minggu --</option>
+                            <?php foreach ($week as $w) : ?>
+                                <option value="<?= $w['week']; ?>"><?= $w['week']; ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </form>
+                </div>
+            </div>
+
+
             <div class="row mt-4">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <div class="card">
@@ -116,7 +112,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="card">
+                    <div class="card" style="border-width: 0px;">
                         <div class="card">
                             <div class="card-body">
                                 <div>
