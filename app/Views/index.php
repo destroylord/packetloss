@@ -10,6 +10,26 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">UNTUK MAP</h5>
+                            <div id="map" style="width: 170%; height: 450px;"></div>
+                            <script>
+                                var map = L.map('map').setView([-7.485091503187003, 112.46627356942513], 10);
+
+
+                                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                    maxZoom: 19,
+                                    attribution: ''
+                                }).addTo(map);
+
+                                // Loop untuk menambahkan marker dari data
+                                for (var i = 0; i < map.length; i++) {
+                                    var packetlos = map[i].latitude;
+                                    var packetlos = map[i].longitude;
+                                    L.marker([latitude, longitude]).bindPopup("<b>Ini Lokasi 3</b>").addTo(map);
+                                }
+                            </script>
+                        </div>
+                        <div class="card-body"><canvas id="maps" width="100%" height="50"></canvas></div>
+                    </div>
                         </div>
 
 

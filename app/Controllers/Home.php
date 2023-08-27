@@ -6,7 +6,11 @@ use App\Models\DashboardModel;
 
 class Home extends BaseController
 {
-
+    protected $dashboardModel;
+    public function __construct()
+    {
+        $this->dashboardModel = new DashboardModel();
+    }
     public function index(): string
     {
         $model = new DashboardModel();
